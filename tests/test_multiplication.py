@@ -26,6 +26,24 @@ from matrix_lib import Matrix
         None,
         "Wrong matrix dimensions"
     ),
+    (
+        Matrix(1, 3, [1, 2, 3]),
+        Matrix(3, 1, [1, 2, 3]),
+        Matrix(1, 1, [14]),
+        None
+    ),
+    (
+        Matrix(3, 1, [1, 2, 3]),
+        Matrix(1, 3, [1, 2, 3]),
+        Matrix(3, 3, [1, 2, 3, 2, 4, 6, 3, 6, 9]),
+        None
+    ),
+    (
+        Matrix(2, 2, [1, 2, 3, 4]),
+        Matrix(2, 4),
+        Matrix(2, 4),
+        None
+    ),
 ])
 def test_matrix_mul(a, b, expected, error):
     if error:
