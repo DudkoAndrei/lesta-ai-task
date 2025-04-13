@@ -4,9 +4,19 @@ from matrix_lib import Matrix
 
 @pytest.mark.parametrize("file_content,matrix,error", [
     (
-        "2\n2\n1.0 2.0 3.0 4.0",
-        Matrix(2, 2, [1.0, 2.0, 3.0, 4.0]),
+        "2\n2\n1 2 3 4",
+        Matrix(2, 2, [1, 2, 3, 4]),
         None
+    ),
+    (
+        "0\n0\n",
+        Matrix(0, 0),
+        None
+    ),
+    (
+        "2\n2\n",
+        None,
+        "Size of data is invalid"
     ),
     (
         "2\n2\n1 2 3",
@@ -16,7 +26,17 @@ from matrix_lib import Matrix
     (
         "2\n2\na b c d",
         None,
-        "Invalid arguments"
+        "Invalid input"
+    ),
+    (
+        "",
+        None,
+        "Invalid input"
+    ),
+    (
+        "2 2 1 2 3 4",
+        None,
+        "Invalid input"
     ),
 ])
 def test_read_matrix(monkeypatch, file_content, matrix, error):
@@ -51,7 +71,7 @@ def test_read_matrix(monkeypatch, file_content, matrix, error):
 
 @pytest.mark.parametrize("matrix,expected_content", [
     (
-        Matrix(2, 2, [1.0, 2.0, 3.0, 4.0]),
+        Matrix(2, 2, [1, 2, 3, 4]),
         "2\n2\n1.0 2.0 3.0 4.0"
     ),
     (
