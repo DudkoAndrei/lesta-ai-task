@@ -11,13 +11,13 @@ from matrix_lib import Matrix
     (
         "2\n2\n1 2 3",
         None,
-        "Size of data isn't equal rows * columns"
+        "Size of data is invalid"
     ),
     (
         "2\n2\na b c d",
         None,
-        "Invalid input"
-    )
+        "Invalid arguments"
+    ),
 ])
 def test_read_matrix(monkeypatch, file_content, matrix, error):
     mock_file = iter(file_content.split("\n"))

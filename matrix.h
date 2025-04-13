@@ -18,7 +18,7 @@ public:
     {
         if (data.size() != n * m)
         {
-            throw std::invalid_argument("Size of data doesn\'t equal rows * columns");
+            throw std::invalid_argument("Size of data is invalid");
         }
 
         data_ = data;

@@ -25,6 +25,7 @@ static int MatrixWrapper_init(MatrixWrapper* self, PyObject* args, PyObject* kwd
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "nn|O!", kwlist,
                                      &rows, &cols, &PyList_Type, &data))
     {
+        PyErr_SetString(PyExc_ValueError, "Invalid arguments");
         return -1;
     }
 
@@ -35,9 +36,21 @@ static int MatrixWrapper_init(MatrixWrapper* self, PyObject* args, PyObject* kwd
         for (size_t i = 0; i < size; ++i)
         {
             PyObject* item = PyList_GetItem(data, i);
+            if (!PyFloat_Check(item) && !PyInt_Check(item))
+            {
+                PyErr_SetString(PyExc_ValueError, "Invalid arguments");
+                return -1;
+            }
+
             vec.push_back(PyFloat_AsDouble(item));
         }
-        self->matrix = new Matrix<double>(rows, cols, vec);
+        try {
+            self->matrix = new Matrix<double>(rows, cols, vec);
+        }
+        catch (const std::exception& e) {
+            PyErr_SetString(PyExc_ValueError, e.what());
+            return -1;
+        }
     }
     else
     {

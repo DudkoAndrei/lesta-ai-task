@@ -8,9 +8,12 @@ def write_matrix(matrix, filename):
 
 def read_matrix(filename):
     with open(filename) as f:
-        rows = int(f.readline())
-        cols = int(f.readline())
-        data = map(float, f.readline().split())
+        try:
+            rows = int(f.readline())
+            cols = int(f.readline())
+            data = map(float, f.readline().split())
+        except ValueError as e:
+            raise ValueError("Invalid input")
         return Matrix(rows, cols, data)
 
 if __name__ == "__main__":
