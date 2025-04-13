@@ -1,0 +1,1 @@
+# Тестовое задание на позицию Junior AI Developer
