@@ -1,6 +1,8 @@
-#include "matrix_wrapper.h"
+#include <Python.h>
 
 #include "matrix.h"
+
+extern PyTypeObject MatrixWrapper_Type;
 
 struct MatrixWrapper
 {
@@ -44,15 +46,17 @@ static int MatrixWrapper_init(MatrixWrapper* self, PyObject* args, PyObject* kwd
 
             vec.push_back(PyFloat_AsDouble(item));
         }
+
         try {
             self->matrix = new Matrix<double>(rows, cols, vec);
         }
-        catch (const std::exception& e) {
+        catch (const std::exception& e) 
+        {
             PyErr_SetString(PyExc_ValueError, e.what());
             return -1;
         }
-    }
-    else
+    } 
+    else 
     {
         self->matrix = new Matrix<double>(rows, cols);
     }
