@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
     python2 get-pip.py
     rm get-pip.py
     pip2 install pytest tox
+    update-alternatives --install /usr/bin/python python /usr/bin/python2 1
 
     cd /home/test
     git clone https://github.com/DudkoAndrei/lesta-ai-task.git
