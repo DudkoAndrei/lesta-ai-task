@@ -29,6 +29,7 @@ Vagrant.configure("2") do |config|
     cp lesta-ai-task/tox.ini .
     mv lesta-ai-task/tests/ ./
     cp lesta-ai-task/src/matrix_mul.py .
+    cp -a lesta-ai-task/example_data/. ./
     chown test -R /home/test
   SHELL
 end
