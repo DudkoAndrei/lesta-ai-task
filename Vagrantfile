@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     git clone https://github.com/DudkoAndrei/lesta-ai-task.git
     cd lesta-ai-task
     mkdir .build && cd .build
-    g++ -shared -fPIC -o matrix_lib.so ../src/matrix_wrapper.cpp $(python2-config --includes --ldflags) -Wno-write-strings
+    g++ -shared -fPIC -o matrix_lib.so ../src/matrix_wrapper.cpp $(python2-config --includes --ldflags) -Wno-write-strings -std=c++11
     cp ../src/matrix_mul.py .
     echo "export PYTHONPATH=$(pwd):$PYTHONPATH" >> /home/test/.bashrc
     cd /home/test
