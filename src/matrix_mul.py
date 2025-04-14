@@ -19,5 +19,5 @@ def read_matrix(filename):
 if __name__ == "__main__":
     matrix1 = read_matrix(sys.argv[1])
     matrix2 = read_matrix(sys.argv[2])
-    result = matrix1.multiply(matrix1)
+    result = matrix1.multiply(matrix2)
     write_matrix(result, sys.argv[3])
